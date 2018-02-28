@@ -1,59 +1,41 @@
 import React from 'react'
-import './index.css'
+import './index.less'
 import logo from '../../assets/images/logo.svg'
 import { connect } from 'react-redux'
 import { DECREMENT_REQUESTED, INCREMENT_REQUESTED } from '../../store/modules/login'
+import { NavBar, Icon,Button } from 'antd-mobile'
 const Login = props => {
-  // console.log(props, 'props')
-  let increment = () => {
-    props.dispatch({ type: INCREMENT_REQUESTED })
-  }
-  let decrement = () => {
-    props.dispatch({ type: DECREMENT_REQUESTED })
-  }
-  return (
-    <div className='login'>
-      <div className='title' />
-      <div className='coordinates-icon'>
-        <div className='coordinates topAct'>
-          <img src={logo} alt='logo' />
+	// console.log(props, 'props')
+	let increment = () => {
+		props.dispatch({ type: INCREMENT_REQUESTED })
+	}
+	let decrement = () => {
+		props.dispatch({ type: DECREMENT_REQUESTED })
+	}
+	return (
+		<div className="pages">
+			<NavBar
+        mode="dark"
+        icon={<Icon type="left" />}>
+				登录
+      </NavBar>
+      <div className='login'>
+        <div className='user'>
+           <input type="text" />
         </div>
-        <div className='circle-1-1 circle-show-2' />
-        <div className='circle-2-2 circle-show-1' />
-        <div className='circle-3-3 circle-show' />
-      </div>
-      <div className='login-form'>
-        <form action='#'>
-          <div className='user-pasw common-div'>
-            <span className='pasw-icon common-icon'>
-              <i className='iconfont  icon-home' />
-            </span>
-            <input type='text' name='password' placeholder='' defaultValue={props.login.count}   value={props.login.count}/>
-          </div>
-          <div className='user-pasw common-div'>
-          <span className='pasw-icon common-icon'>
-            <i className='iconfont  icon-miyao' />
-          </span>
-          <input type='password' name='password' placeholder='accesstoken'  defaultValue={props.login.count}   value={props.login.count} />
+        <div className='password'>
+        <input type="text" />
         </div>
-          <div className='login-btn' onClick={increment} >
-          increment
-          </div>
-          <div className='login-btn' onClick={decrement}>
-          decrement
-         </div>
-        </form>
+        <Button type="primary" className='sumbit'>登录</Button>
       </div>
-    </div>
-  )
+		</div>
+	)
 }
 
 const mapStateToProps = state => {
-  return {
-    ...state
-  }
+	return {
+		...state,
+	}
 }
 
-export default connect(
-  mapStateToProps
-)(Login)
+export default connect(mapStateToProps)(Login)
